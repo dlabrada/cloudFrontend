@@ -1,0 +1,12 @@
+export { default as TrafficligthPage } from './Trafficligth/TrafficligthPage';
+export { default as CreateTrafficligthPage } from './Trafficligth/CreateTrafficligthPage';
+export { default as EditTrafficligthPage} from './Trafficligth/EditTrafficligthPage';
+export { default as DeleteTrafficligthPage } from './Trafficligth/DeleteTrafficligthPage';
+export { default as OrganizationPage } from './Organization/OrganizationPage';
+export { default as CreateOrganizationPage } from './Organization/CreateOrganizationPage';
+export { default as EditOrganizationPage } from './Organization/EditOrganizationPage';
+export { default as DeleteOrganizationPage  } from './Organization/DeleteOrganizationPage';
+export { default as UserPage } from './User/UserPage';
+export { default as CreateUserPage } from './User/CreateUserPage';
+export { default as EditUserPage } from './User/EditUserPage';
+export { default as DeleteUserPage  } from './User/DeleteUserPage';
