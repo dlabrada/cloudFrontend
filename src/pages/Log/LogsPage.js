@@ -1,8 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
 import { useState , useEffect } from 'react';
-import {useNavigate,useParams} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import {useDispatch,useSelector} from 'react-redux'
 
 import Moment from 'react-moment';
@@ -13,12 +12,8 @@ import {
   Table,
   Stack,
   Paper,
-  Avatar,
   Button,
-  Popover,
-  Checkbox,
   TableRow,
-  MenuItem,
   TableBody,
   TableCell,
   Container,
@@ -39,7 +34,6 @@ import AlertError from "../../components/alerts/AlertsError"
 
 // mock
 import Loading from '../../components/loading/Loading';
-import DetailsModal from '../../components/modals/Details';
 
 // ----------------------------------------------------------------------
 
@@ -112,13 +106,10 @@ export default function LogPage() {
     setSuccess(succ)
    },[load,err,succ])
 
-  const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
-
-  const [selected, setSelected] = useState([]);
 
   const [orderBy, setOrderBy] = useState('name');
 
@@ -126,39 +117,10 @@ export default function LogPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-   const [select,setSelect] = useState([]);
-
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  };
-
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = LOGLIST.map((n) => n.name);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
-
-  const handleClick = (event, name,row) => {
-    const selectedIndex = selected.indexOf(name);
-    console.log(event.target.value)
-    // const
-    setSelect(row)
-    let newSelected = [];
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
-    }
-    setSelected(newSelected);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -178,7 +140,7 @@ export default function LogPage() {
   const navigate = useNavigate();
 
   const handleNavigate = (codeTraffic)=>{
-    console.log(codeTraffic)
+    // console.log(codeTraffic)
     navigate(`./details`,{state:{codeTraffic}})
   }
 
@@ -201,7 +163,7 @@ export default function LogPage() {
           </Typography>
         </Stack>
         <Card>
-        <LogListToolbar numSelected={selected.length} filterName={filterName} select={"log"} onFilterName={handleFilterByName} />
+        <LogListToolbar  filterName={filterName} select={"log"} onFilterName={handleFilterByName} />
           {loading?(
             <>
             <Loading/>
@@ -219,17 +181,16 @@ export default function LogPage() {
                   orderBy={orderBy}
                   headLabel={user.roles==="User" ? TABLE_HEAD:TABLE_HEAD1}
                   rowCount={LOGLIST.length}
-                  numSelected={selected.length}
+                
                   onRequestSort={handleRequestSort}
-                  onSelectAllClick={handleSelectAllClick}              
+                           
                 />
                 <TableBody>
                 {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                  const { code, organization, name, statusTraffic, updatedAt } = row;
-                  const selectedUser = selected.indexOf(name) !== -1;
+                  const { code, organization, name, statusTraffic, updatedAt } = row;              
 
                   return (
-                    <TableRow hover key={code} tabIndex={-1} role="checkbox" selected={selectedUser} size='small'>      
+                    <TableRow hover key={code} tabIndex={-1} role="checkbox"  size='small'>      
                       {
                         user.roles!=="User" && <TableCell component="th" scope="row" size='small' > 
                                            
@@ -252,9 +213,9 @@ export default function LogPage() {
 
                       <TableCell align="left" size='small'> 
                         <Label  >{(statusTraffic===10111)?'Sin Informacion':(
-                                      (statusTraffic===11011)?'Empalme':(
-                                          (statusTraffic===11101)?'Control':(
-                                            (statusTraffic===11110)?'Luces':'Operativo'
+                                      (statusTraffic===11011)?'Problemas de Empalme':(
+                                          (statusTraffic===11101)?'Problemas de Control':(
+                                            (statusTraffic===11110)?'Sin Luces hacia Terreno':'Funcionando con Normalida'
                                           )))}
                         </Label>
                       </TableCell>

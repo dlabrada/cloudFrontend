@@ -9,6 +9,7 @@ const dataTrafficligth ={
     success: false,
     error:""
 }
+const BaseUrl = "http://137.184.201.232"
 const LOADING = "LOADING"
 const ERROR = "ERROR"
 const GET_OBTENER_TRAFFICLIGTH = 'GET_OBETENER_TRAFFICLIGTH'
@@ -77,17 +78,17 @@ export default function trafficligthReducer(state= dataTrafficligth,action){
 
 // acciones
 // OBTENER INFORMACION
-export const getTrafficligth= ()=> async (dispatch,getState)=>{
+export const getTrafficligth= ()=> async (dispatch)=>{
     try{
             dispatch({
                 type:LOADING
             });  
             
             const token = localStorage.getItem('authToken')
-        
+       
             const config = {
                 method: 'get',
-                url: 'http://localhost:9090/api/trafficligth/sql',
+                url:`${BaseUrl}:9090/api/trafficligth/sql`,
                 headers: { 
                   'Content-Type': 'application/json',
                    'auth-token': token
@@ -96,16 +97,16 @@ export const getTrafficligth= ()=> async (dispatch,getState)=>{
             const res = await axios(config);
             
 
-                // console.log(res.data)
-                setTimeout(async ()=>{
+             
+                // setTimeout(async ()=>{
                 dispatch({
                     type: GET_OBTENER_TRAFFICLIGTH,
                     payload: res.data
                    }) 
-            },1000)
+            // },1000)
 
     }catch(error){
-        console.log(error)
+      
         dispatch({
             type:ERROR,
              payload:error.response.data
@@ -114,7 +115,7 @@ export const getTrafficligth= ()=> async (dispatch,getState)=>{
 }
 
 // CREAR ORGANIZACION
-export const postTrafficligth = (trafficligth)=>async (dispatch,getState)=>{
+export const postTrafficligth = (trafficligth)=>async (dispatch)=>{
 
     try {
         dispatch({
@@ -134,7 +135,7 @@ export const postTrafficligth = (trafficligth)=>async (dispatch,getState)=>{
             createdBy:"Dlabrada",
             updatedBy:"Juean"
       } ;
-    //    console.log(datosSend)
+
 
         // setTimeout(async()=>{
 
@@ -142,7 +143,7 @@ export const postTrafficligth = (trafficligth)=>async (dispatch,getState)=>{
         
         const config = {
             method: 'post',
-            url: 'http://localhost:9090/api/trafficligth/sql',
+            url:`${BaseUrl}:9090/api/trafficligth/sql`,
             headers: { 
               'Content-Type': 'application/json',
                'auth-token': tokenWeb
@@ -151,8 +152,6 @@ export const postTrafficligth = (trafficligth)=>async (dispatch,getState)=>{
           };
         const res = await axios(config);
 
-        // organizationList.push(res.data.response)
-console.log(res)
         dispatch({
          type: POST_CREAR_TRAFFICLIGTH,
          payload: res.data,
@@ -161,7 +160,6 @@ console.log(res)
         // },2000)
         
     } catch (error) {
-        console.log(error)
         dispatch({
             type:ERROR,
              payload:error.response.data
@@ -170,7 +168,7 @@ console.log(res)
 }
 
 // EDITAR ORGANIZATION
-export const putTrafficligth = (trafficligth)=>async (dispatch,getState)=>{
+export const putTrafficligth = (trafficligth)=>async (dispatch)=>{
 
     try {
         dispatch({
@@ -188,7 +186,7 @@ export const putTrafficligth = (trafficligth)=>async (dispatch,getState)=>{
         
       const config = {
           method: 'put',
-        url: 'http://localhost:9090/api/trafficligth/sql',
+          url: `${BaseUrl}:9090/api/trafficligth/sql`,
           headers: { 
             'Content-Type': 'application/json',
              'auth-token': tokenWeb
@@ -203,7 +201,6 @@ export const putTrafficligth = (trafficligth)=>async (dispatch,getState)=>{
           type: PUT_EDITAR_TRAFFICLIGTH,
           payload: response.data
       }) 
-      console.log(getState().trafficligth.loading)
         // },2000)
       
     } catch (error) {
@@ -214,7 +211,7 @@ export const putTrafficligth = (trafficligth)=>async (dispatch,getState)=>{
     }
 }
 // TODO: Faltan todas las validaciones
-export const deleteTrafficligth = (code) => async(dispatch,getState)=>{
+export const deleteTrafficligth = (code) => async(dispatch)=>{
 
     try {
         dispatch({
@@ -225,7 +222,7 @@ export const deleteTrafficligth = (code) => async(dispatch,getState)=>{
         
       const config = {
                 method: 'delete',
-                url: 'http://localhost:9090/api/trafficligth/sql',
+                url: `${BaseUrl}:9090/api/trafficligth/sql`,
           headers: { 
             'Content-Type': 'application/json',
              'auth-token': token

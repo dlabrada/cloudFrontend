@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { redirect } from 'react-router-dom'
 // constantes 
 const dataLog ={
     array:[],
@@ -7,6 +6,7 @@ const dataLog ={
     loading:true,
     loadingmodal:true,
 }
+const BaseUrl = "http://137.184.201.232"
 const LOADING = "LOADING"
 const LOADINGMODAL = "LOADINGMODAL"
 const ERROR = "ERROR"
@@ -54,7 +54,7 @@ export default function logReducer(state= dataLog,action){
 
 // acciones
 // OBTENER INFORMACION
-export const getLogs= ()=> async (dispatch,getState)=>{
+export const getLogs= ()=> async (dispatch)=>{
     try{
             dispatch({
                 type:LOADING
@@ -62,10 +62,10 @@ export const getLogs= ()=> async (dispatch,getState)=>{
 
             // setTimeout(async ()=>{
                 const token = localStorage.getItem('authToken')
-        
+                
                 const config = {
                     method: 'get',
-                    url: 'http://localhost:9090/api/event/sql',
+                    url: `${BaseUrl}:9090/api/event/sql`,
                     headers: { 
                       'Content-Type': 'application/json',
                        'auth-token': token
@@ -79,7 +79,7 @@ export const getLogs= ()=> async (dispatch,getState)=>{
             // },2000)
 
     }catch(error){
-        console.log(error)
+        
         dispatch({
             type:ERROR,
              payload:error.response.data
@@ -88,22 +88,22 @@ export const getLogs= ()=> async (dispatch,getState)=>{
 }
 
 // CREAR ORGANIZACION
-export const getDetails = (codeTraffic)=>async (dispatch,getState)=>{
-    // const organizationList = getState().organization.array
+export const getDetails = (codeTraffic)=>async (dispatch)=>{
+  
     try {
         dispatch({
             type:LOADING
         });
-        console.log(codeTraffic)
+       
         const data = {           
             codeTraffic
       } ;
 
       const token = localStorage.getItem('authToken')
-        
+      
       const config = {
           method: 'post',
-          url: 'http://localhost:9090/api/event/details/sql',
+          url: `${BaseUrl}:9090/api/event/details/sql`,
           headers: { 
             'Content-Type': 'application/json',
              'auth-token': token
@@ -121,7 +121,7 @@ export const getDetails = (codeTraffic)=>async (dispatch,getState)=>{
         // },2000)
         
     } catch (error) {
-        console.log(error)
+       
         dispatch({
             type:ERROR,
              payload:error.response.data

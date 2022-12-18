@@ -13,6 +13,7 @@ const dataUsers ={
     error:""
 
 }
+const BaseUrl = "http://137.184.201.232"
 const LOADING = "LOADING"
 const LOADING1 = "LOADING1"
 const ERROR = "ERROR"
@@ -85,7 +86,7 @@ export default function usuariosReducer(state= dataUsers,action){
 }
 
 // // acciones
-export const getUser= ()=> async (dispatch,getState)=>{
+export const getUser= ()=> async (dispatch)=>{
     try{
        // console.log("usuarios "+getState().usuarios.dataPost)
        dispatch({
@@ -96,7 +97,7 @@ export const getUser= ()=> async (dispatch,getState)=>{
         
     const config = {
         method: 'get',
-        url: 'http://localhost:9090/api/users/sql',
+        url: `${BaseUrl}:9090/api/users/sql`,
         headers: { 
           'Content-Type': 'application/json',
            'auth-token': token
@@ -110,7 +111,7 @@ export const getUser= ()=> async (dispatch,getState)=>{
        }) 
 
     }catch(error){
-        console.log(error)
+        
         dispatch({
             type:ERROR,
              payload:error.response.data
@@ -119,7 +120,7 @@ export const getUser= ()=> async (dispatch,getState)=>{
 }
 
 
-export const postUser = (userItems) => async (dispatch,getState)=>{
+export const postUser = (userItems) => async (dispatch)=>{
     const {code,name,organization,notification,email,phone,rol,password,logo,status} = userItems;
     try {
         dispatch({
@@ -144,7 +145,7 @@ export const postUser = (userItems) => async (dispatch,getState)=>{
         
       const config = {
           method: 'post',
-          url: 'http://localhost:9090/api/users/sql',
+          url: `${BaseUrl}:9090/api/users/sql`,
           headers: { 
             'Content-Type': 'application/json',
              'auth-token': token
@@ -159,7 +160,7 @@ export const postUser = (userItems) => async (dispatch,getState)=>{
         payload: res.data
        }) 
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type:ERROR,
              payload:error.response.data
@@ -167,16 +168,16 @@ export const postUser = (userItems) => async (dispatch,getState)=>{
     }
 }
 
-export const deleteUser = (code) => async(dispatch,getState)=>{
+export const deleteUser = (code) => async(dispatch)=>{
     try {
         dispatch({
             type:LOADING
         });
-        console.log(code)
+       
         const token = localStorage.getItem('authToken')
             const config = {
                 method: 'delete',
-                url: 'http://localhost:9090/api/users/sql',
+                url: `${BaseUrl}:9090/api/users/sql`,
                 headers: { 
                   'Content-Type': 'application/json',
                   'auth-token': token
@@ -203,7 +204,7 @@ export const deleteUser = (code) => async(dispatch,getState)=>{
    
 }
 
-export const putUser = (users) => async(dispatch,getState)=>{
+export const putUser = (users) => async(dispatch)=>{
     try {
         dispatch({
             type:LOADING
@@ -214,7 +215,7 @@ export const putUser = (users) => async(dispatch,getState)=>{
      const token = localStorage.getItem('authToken')
       const config = {
         method: 'put',
-        url: 'http://localhost:9090/api/users/sql',
+        url: `${BaseUrl}:9090/api/users/sql`,
         headers: { 
           'Content-Type': 'application/json',
           'auth-token': token
@@ -228,7 +229,7 @@ export const putUser = (users) => async(dispatch,getState)=>{
        }) 
         
     } catch (error) {
-        console.log(error)
+     
         dispatch({
             type:ERROR,
              payload:error.response.data

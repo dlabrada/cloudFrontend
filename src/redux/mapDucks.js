@@ -4,6 +4,7 @@ const dataMaps ={
     array:[],
     loadingmap:false,
 }
+const BaseUrl = "http://137.184.201.232"
 const LOADING = "LOADING"
 const ERROR = "ERROR"
 const GET_OBTENER_MAP = 'GET_OBETENER_MAP'
@@ -35,20 +36,21 @@ export default function mapReducer(state= dataMaps,action){
 
 // acciones
 // OBTENER INFORMACION
-export const getMap= ()=> async (dispatch,getState)=>{
+export const getMap= ()=> async (dispatch)=>{
     try{
             // setTimeout(async ()=>{
                 const token = localStorage.getItem('authToken')
+                
                 const config = {
                     method: 'get',
-                    url: 'http://localhost:9090/api/trafficligth/maps/sql',
+                    url: `${BaseUrl}:9090/api/trafficligth/maps/sql`,
                     headers: { 
                       'Content-Type': 'application/json',
                        'auth-token': token
                     }
                   };
                 const res = await axios(config);
-// console.log(res.data)
+
                 dispatch({
                     type: GET_OBTENER_MAP,
                     payload: res.data
@@ -56,7 +58,7 @@ export const getMap= ()=> async (dispatch,getState)=>{
             // },2000)
 
     }catch(error){
-        console.log(error)
+       
         dispatch({
             type:ERROR,
              payload:error.response.data

@@ -6,6 +6,7 @@ const dataMaps ={
     error:"",
     errorA:""
 }
+const BaseUrl = "http://137.184.201.232"
 const LOADING = "LOADING"
 const ERROR1 = "ERROR1"
 const GET_OBTENER_TOKEN = 'GET_OBETENER_TOKEN'
@@ -55,13 +56,14 @@ export default function authReducer(state= dataMaps,action){
 
 // acciones
 // OBTENER INFORMACION
-export const getAuth= (data)=> async (dispatch,getState)=>{
+export const getAuth= (data)=> async (dispatch)=>{
     try{
             dispatch({
                 type:LOADING
             });  
             // setTimeout(async ()=>{
-                const res = await axios.post('http://localhost:9090/api/login',data);
+                console.log(`${BaseUrl}:9090/api/login`)
+                const res = await axios.post(`${BaseUrl}:9090/api/login`,data);
                 dispatch({
                     type: GET_OBTENER_TOKEN,
                     payload: res.data
@@ -78,18 +80,15 @@ export const getAuth= (data)=> async (dispatch,getState)=>{
     }
 }
 
-export const getValidate= ()=> async (dispatch,getState)=>{
+export const getValidate= ()=> async (dispatch)=>{
     try{
-            // dispatch({
-            //     type:LOADING
-            // });
-            // console.log("se ejecuto")
+            
             // setTimeout(async ()=>{
                 const token = localStorage.getItem('authToken')
         
                 const config = {
-                    method: 'post',
-                    url: 'http://localhost:9090/api/validate',
+                    method: 'post',                    
+                    url: `${BaseUrl}:9090/api/validate`,
                     headers: { 
                       'Content-Type': 'application/json',
                        'auth-token': token
@@ -101,10 +100,10 @@ export const getValidate= ()=> async (dispatch,getState)=>{
                      payload:res.data
                 });
                 localStorage.setItem("usuario", JSON.stringify(res.data.user));
-                // console.log(res.data.user)
+              
             // },2000)
     }catch(error){
-        console.log(error)
+   
         dispatch({
             type:ERROR1,
              payload:error.response.data
@@ -112,7 +111,7 @@ export const getValidate= ()=> async (dispatch,getState)=>{
     }
 }
 
-export const getLogout= ()=> async (dispatch,getState)=>{
+export const getLogout= ()=> async (dispatch)=>{
     try{           
         console.log("logout")
         localStorage.clear()
@@ -122,10 +121,7 @@ export const getLogout= ()=> async (dispatch,getState)=>{
                 });
      
     }catch(error){
-        console.log(error)
-        // dispatch({
-        //     type:ERROR1,
-        //      payload:error.response.data
-        // });
+       
+   console.log(error)
     }
 }

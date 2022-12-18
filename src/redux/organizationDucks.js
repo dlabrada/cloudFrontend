@@ -8,6 +8,7 @@ const dataOrganization ={
     success: false,
     error:""
 }
+const BaseUrl = "http://137.184.201.232"
 const LOADING = "LOADING"
 const LOADING1 = "LOADING1"
 const ERROR = "ERROR"
@@ -100,9 +101,10 @@ export const getOrganization= ()=> async (dispatch)=>{
             });  
 
             const token = localStorage.getItem('authToken')
+            
             const config = {
                 method: 'get',
-                url: 'http://localhost:9090/api/organization/sql',
+                url: `${BaseUrl}:9090/api/organization/sql`,
                 headers: { 
                   'Content-Type': 'application/json',
                    'auth-token': token
@@ -110,9 +112,8 @@ export const getOrganization= ()=> async (dispatch)=>{
               };
             const res = await axios(config);
             
-            // const res = await axios.get('http://localhost:9090/api/organization/sql');
             setTimeout(async ()=>{
-            // console.log(res)
+        
                 dispatch({
                     type: GET_OBTENER_ORGANIZATION,
                     payload: res.data
@@ -129,6 +130,7 @@ export const getOrganization= ()=> async (dispatch)=>{
     }
 }
 
+// No se esta ocupando
 export const getOrganizationCreate= ()=> async (dispatch)=>{
     try{
             dispatch({
@@ -136,26 +138,18 @@ export const getOrganizationCreate= ()=> async (dispatch)=>{
             });  
 
             const token = localStorage.getItem('authToken')
+           
             const config = {
                 method: 'get',
-                url: 'http://localhost:9090/api/organization/create/sql',
+                url:  `${BaseUrl}:9090/api/organization/create/sql`,
                 headers: { 
                   'Content-Type': 'application/json',
                    'auth-token': token
                 }
               };
-            const res = await axios(config);
-            
-        //     setTimeout(async ()=>{
-        //     // console.log(res)
-        //         dispatch({
-        //             type: GET_OBTENER_ORGANIZATION_CREATE,
-        //             payload: res.data
-        //            }) 
-        //    },1000)
+            await axios(config);
 
     }catch(error){
-        // console.log(error.response.data)
         dispatch({
             type:ERROR,
              payload:error.response.data
@@ -163,6 +157,7 @@ export const getOrganizationCreate= ()=> async (dispatch)=>{
 
     }
 }
+
 // CREAR ORGANIZACION
 export const postOrganization = (organization)=>async (dispatch)=>{
     try {
@@ -184,9 +179,10 @@ export const postOrganization = (organization)=>async (dispatch)=>{
         // setTimeout(async()=>{
 
         const token = localStorage.getItem('authToken')
+        
         const config = {
             method: 'post',
-            url: 'http://localhost:9090/api/organization/sql',
+            url: `${BaseUrl}:9090/api/organization/sql`,
             headers: { 
               'Content-Type': 'application/json',
                'auth-token': token
@@ -195,10 +191,6 @@ export const postOrganization = (organization)=>async (dispatch)=>{
           };
         const res = await axios(config);
 
-        // const res = await axios.post('http://localhost:9090/api/organization/sql', data)
-
-        // organizationList.push(res.data.response)
-
         dispatch({
          type: POST_CREAR_ORGANIZATION,
          payload: res.data
@@ -206,7 +198,7 @@ export const postOrganization = (organization)=>async (dispatch)=>{
         // },3000)
         
     } catch (error) {
-        console.log(error.response.data)
+        
         dispatch({
             type:ERROR,
              payload:error.response.data
@@ -221,11 +213,9 @@ export const getCodeOrganization= (code)=> async (dispatch)=>{
             type: LOADING,
             
            }) 
-
-        console.log(code)
         const config = {
             method: 'post',
-            url: 'http://localhost:9090/api/organization/sql/find',
+            url: `${BaseUrl}:9090/api/organization/sql/find`,
             headers: { 
               'Content-Type': 'application/json'
             },
@@ -233,8 +223,7 @@ export const getCodeOrganization= (code)=> async (dispatch)=>{
           };
 
         const res = await axios(config);
-      console.log(res.data)
-        // TODO: Enviar si existe un error
+        
         // setTimeout(()=>{ 
            
             dispatch({
@@ -244,7 +233,7 @@ export const getCodeOrganization= (code)=> async (dispatch)=>{
         // },2000)
 
     }catch(error){
-        // console.log(error.response.data)
+       
         dispatch({
             type:ERROR,
              payload:error.response.data
@@ -274,9 +263,10 @@ export const putOrganization = (organization)=>async (dispatch)=>{
             createdBy,
             updatedBy
       } ;
+      
       const config = {
         method: 'put',
-        url: 'http://localhost:9090/api/organization/sql',
+        url: `${BaseUrl}:9090/api/organization/sql`,
         headers: { 
           'Content-Type': 'application/json',
            'auth-token': token
@@ -293,7 +283,7 @@ export const putOrganization = (organization)=>async (dispatch)=>{
         // },2000)
       
     } catch (error) {
-        console.log(error)
+      
         dispatch({
             type:ERROR,
              payload:error.response.data
@@ -307,12 +297,12 @@ export const deleteOrganization = (code) => async(dispatch)=>{
         dispatch({
             type:LOADING
         });
-      console.log(code)
+    
         const token = localStorage.getItem('authToken')
         
         const config = {
             method: 'delete',
-            url: 'http://localhost:9090/api/organization/sql',
+            url: `${BaseUrl}:9090/api/organization/sql`,
             headers: { 
               'Content-Type': 'application/json',
                'auth-token': token
@@ -320,8 +310,8 @@ export const deleteOrganization = (code) => async(dispatch)=>{
             data:{code}
           };
             const res = await axios(config);
-          console.log(res)
-            // TODO: Enviar si existe un error
+       
+         
             // setTimeout(()=>{ 
                
                 dispatch({
@@ -331,7 +321,7 @@ export const deleteOrganization = (code) => async(dispatch)=>{
             // },2000)
 
     } catch (error) {
-        console.log(error.response.data)
+
         dispatch({
             type:ERROR,
              payload:error.response.data

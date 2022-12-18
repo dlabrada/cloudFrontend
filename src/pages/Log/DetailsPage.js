@@ -1,8 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
 import { useState , useEffect } from 'react';
-import {useLocation, useParams} from "react-router-dom"
+import {useLocation} from "react-router-dom"
 import {useDispatch,useSelector} from 'react-redux'
 
 import Moment from 'react-moment';
@@ -14,12 +13,7 @@ import {
   Table,
   Stack,
   Paper,
-  Avatar,
-  Button,
-  Popover,
-  Checkbox,
   TableRow,
-  MenuItem,
   TableBody,
   TableCell,
   Container,
@@ -38,8 +32,6 @@ import Scrollbar from '../../components/scrollbar';
 
 // mock
 import Loading from '../../components/loading/Loading';
-import DetailsModal from '../../components/modals/Details';
-
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -87,16 +79,12 @@ export default function LogPage() {
   const dispatch = useDispatch()
 
   const {state} = useLocation();
+  const code = state.codeTraffic
   const LOGLIST =  useSelector(store=>store.log.array)
   const load = useSelector(store=>store.log.loading)
-  const err = useSelector(store=>store.log.error)
-  const succ = useSelector(store=>store.log.successCreate)
-  const param = useParams();
   const [loading, setLoading] = useState(false);
-  const [error,setError]=useState(useSelector(store=>store.log.error));
-  const [success,setSuccess]=useState(false);
   useEffect(()=>{
-    dispatch(getDetails(state.codeTraffic));
+    dispatch(getDetails(code));
     setLoading(load)
    },[dispatch])
 
@@ -110,8 +98,6 @@ export default function LogPage() {
 
   const [order, setOrder] = useState('asc');
 
-  const [selected, setSelected] = useState([]);
-
   const [orderBy, setOrderBy] = useState('name');
 
   const [filterName, setFilterName] = useState('');
@@ -124,8 +110,6 @@ export default function LogPage() {
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
-
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -162,7 +146,7 @@ export default function LogPage() {
           </Typography>
         </Stack>
         <Card>
-        <LogListToolbar numSelected={selected.length} filterName={filterName} select={"details"} onFilterName={handleFilterByName} />
+        <LogListToolbar filterName={filterName} select={"details"} onFilterName={handleFilterByName} />
           {loading?(
                    <Loading/>
                ):(
@@ -175,9 +159,7 @@ export default function LogPage() {
                       orderBy={orderBy}
                       headLabel={TABLE_HEAD}
                       rowCount={LOGLIST.length}
-                    
-                      onRequestSort={handleRequestSort}
-                        
+                      onRequestSort={handleRequestSort}              
                     />
                     <TableBody>
                     {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
