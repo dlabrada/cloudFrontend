@@ -186,14 +186,10 @@ export const deleteUser = (code) => async(dispatch)=>{
               };
 
             const resDelete = await axios(config);
-
-    
-            // setTimeout(()=>{ 
                 dispatch({
                     type: DELETE_ELIMINAR_USUARIOS,
                     payload: resDelete.data
                 }) 
-            // },2000)
 
     } catch (error) {
         dispatch({

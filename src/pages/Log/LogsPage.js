@@ -141,7 +141,7 @@ export default function LogPage() {
 
   const handleNavigate = (codeTraffic)=>{
     // console.log(codeTraffic)
-    navigate(`./details`,{state:{codeTraffic}})
+    navigate(`../details`,{state:{codeTraffic}})
   }
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - LOGLIST.length) : 0;

@@ -59,8 +59,6 @@ export const getLogs= ()=> async (dispatch)=>{
             dispatch({
                 type:LOADING
             });  
-
-            // setTimeout(async ()=>{
                 const token = localStorage.getItem('authToken')
                 
                 const config = {
@@ -76,7 +74,6 @@ export const getLogs= ()=> async (dispatch)=>{
                     type: GET_OBTENER_LOGS,
                     payload: res.data
                    }) 
-            // },2000)
 
     }catch(error){
         
@@ -111,14 +108,11 @@ export const getDetails = (codeTraffic)=>async (dispatch)=>{
           data
         };
       const res = await axios(config);
-        // setTimeout(async()=>{
-
+      
         dispatch({
          type: GET_DETAILS_LOGS,
          payload: res.data,
         }) 
-
-        // },2000)
         
     } catch (error) {
        

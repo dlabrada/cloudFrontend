@@ -140,10 +140,10 @@ export default function OrganizationPage() {
   const navigate = useNavigate();
 
   const handleNavigateEdit = (raw)=>{
-    navigate('./edit',{state:{Organization:raw}})
+    navigate('../organizationedit',{state:{Organization:raw}})
 }
   const handleNavigateDelete = (raw)=>{
-  navigate('./delete',{state:{Organization:raw}})
+  navigate('../organizationdelete',{state:{Organization:raw}})
 }
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - ORGANIZATIONLIST.length) : 0;
@@ -195,9 +195,9 @@ export default function OrganizationPage() {
                           // console.log(row)
                           return (
                             <TableRow hover key={code} tabIndex={-1} role="checkbox"  size='small'>
-                              <TableCell padding="checkbox" >
-                                {/* <Checkbox checked={selectedUser} size='small' onChange={(event) => handleClick(event, name,row)} /> */}
-                              </TableCell>
+                              {/* <TableCell padding="checkbox" >
+                                <Checkbox checked={selectedUser} size='small' onChange={(event) => handleClick(event, name,row)} />
+                              </TableCell> */}
     
                               <TableCell component="th" scope="row" size='small' >
                               <img alt="country" src={photoUrl} style={{ width: 80}} />

@@ -48,7 +48,7 @@ OrganizationListToolbar.propTypes = {
 export default function OrganizationListToolbar({ numSelected, filterName, onFilterName,select }) {
   const navigate = useNavigate();
   const handleNavigateCreate = ()=>{
-    navigate('./create')
+    navigate('../organizationcreate')
   }
 
 //  const { code } = useParams();

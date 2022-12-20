@@ -153,15 +153,6 @@ const CreateUserPage = (props) => {
         <Card sx={style}>
           <form onSubmit={handleSaveUser}>
 
-    
-    <Stack spacing={2} justifyContent="center" alignItems="center" >
-    <Typography variant="h5" gutterBottom > 
-          Create
-        </Typography>
-    </Stack>
-
-    <Divider />
-
     <Stack spacing={2} justifyContent="center" alignItems="center" >
               <Item  sx={{alignItem:"center"}}>          
                  <Avatar

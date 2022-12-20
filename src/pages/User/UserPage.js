@@ -152,10 +152,10 @@ export default function UserPage() {
     top100Films =  list.map((org)=>{
       return  {label:org.code}
       })
-    navigate('./edit',{state:{Organization:raw,top100Films,logo,roles}})
+    navigate('../useredit',{state:{Organization:raw,top100Films,logo,roles}})
   }
   const handleNavigateDelete = (raw)=>{
-  navigate('./delete',{state:{Organization:raw}})
+  navigate('../userdelete',{state:{Organization:raw}})
   }
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;

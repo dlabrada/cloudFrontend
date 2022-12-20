@@ -87,13 +87,13 @@ const AuthProviderAdmin = ({ children, user, ruta='/login' })=>{
       children:[
         // Usuarios Basicos 
         {
-          path: '/dashboard',
+          path: '/',
           element: <DashboardLayout />,
           children: [
-            { element: <Navigate to="/dashboard/app" />, index: true },
-            { path: 'app', element: <DashboardAppPage /> },
+            { element: <Navigate to="/dashboard" />, index: true },
+            { path: 'dashboard', element: <DashboardAppPage /> },
             { path: 'logs', element: <LogsPage /> },
-            { path: 'logs/:id', element: <DetailsPage/> },
+            { path: 'details', element: <DetailsPage/> },
             { path: 'maps', element: <MapsPage /> },
             { path: 'profile', element: <ProfilePage /> },
             { path: '404', element: <Page404 /> },
@@ -108,10 +108,10 @@ const AuthProviderAdmin = ({ children, user, ruta='/login' })=>{
       children:[
         // Usuarios Operadores/Admin/SAdmin
         {
-          path: '/admin',
+          path: '/',
           element: <DashboardLayout  />,
           children: [
-            { element: <Navigate to="/admin/user" />, index: true },
+            { element: <Navigate to="/user" />, index: true },
             { path: 'user', element: <UserPage /> },
             { path: 'organization', element: <OrganizationPage /> },
             { path: 'trafficligth', element: <TrafficligthPage /> },   
@@ -126,19 +126,19 @@ const AuthProviderAdmin = ({ children, user, ruta='/login' })=>{
       children:[
         // Usuarios administradores
         {
-          path: '/admin',
+          path: '/',
           element: <DashboardLayout  />,
           children: [
-            { element: <Navigate to="/admin/user" />, index: true },
+            { element: <Navigate to="/user" />, index: true },
             { path: 'user', element: <UserPage /> },
-            { path:'user/create', element:<CreateUserPage user ={user}/>},
-            { path:'user/edit', element:<EditUserPage />},
+            { path:'usercreate', element:<CreateUserPage user ={user}/>},
+            { path:'useredit', element:<EditUserPage />},
             { path: 'organization', element: <OrganizationPage /> },
-            { path: 'organization/create', element: <CreateOrganizationPage /> },
-            { path: 'organization/edit', element: <EditOrganizationPage /> },
+            { path: 'organizationcreate', element: <CreateOrganizationPage /> },
+            { path: 'organizationedit', element: <EditOrganizationPage /> },
             { path: 'trafficligth', element: <TrafficligthPage /> },
-            { path: 'trafficligth/create', element: <CreateTrafficligthPage /> },
-            { path: 'trafficligth/edit', element: <EditTrafficligthPage /> },
+            { path: 'trafficligthcreate', element: <CreateTrafficligthPage /> },
+            { path: 'trafficligthedit', element: <EditTrafficligthPage /> },
             { path: '404', element: <Page404 /> },
             { path:'*', element: <Navigate to="404" /> },
           ],
@@ -150,14 +150,13 @@ const AuthProviderAdmin = ({ children, user, ruta='/login' })=>{
       children:[
         // Usuarios administradores
         {
-          path: '/admin',
+          path: '/',
           element: <DashboardLayout  />,
           children: [
-            { element: <Navigate to="/admin/user" />, index: true },
-            { path:'user/delete', element:<DeleteUserPage/>},
-            { path: 'organization', element: <OrganizationPage /> },
-            { path: 'organization/delete', element: <DeleteOrganizationPage /> },
-            { path: 'trafficligth/delete', element: <DeleteTrafficligthPage /> },       
+            { element: <Navigate to="/user" />, index: true },
+            { path:'userdelete', element:<DeleteUserPage/>},
+            { path: 'organizationdelete', element: <DeleteOrganizationPage /> },
+            { path: 'trafficligthdelete', element: <DeleteTrafficligthPage /> },       
             { path: '404', element: <Page404 /> },
             { path:'*', element: <Navigate to="404" /> },
           ],

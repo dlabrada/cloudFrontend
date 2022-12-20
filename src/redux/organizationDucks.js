@@ -112,13 +112,13 @@ export const getOrganization= ()=> async (dispatch)=>{
               };
             const res = await axios(config);
             
-            setTimeout(async ()=>{
+          
         
                 dispatch({
                     type: GET_OBTENER_ORGANIZATION,
                     payload: res.data
                    }) 
-           },1000)
+       
 
     }catch(error){
         // console.log(error.response.data)
@@ -223,14 +223,11 @@ export const getCodeOrganization= (code)=> async (dispatch)=>{
           };
 
         const res = await axios(config);
-        
-        // setTimeout(()=>{ 
            
             dispatch({
                 type: CODE_OBTENER_ORGANIZATION,
                 payload: res.data
-            }) 
-        // },2000)
+            })
 
     }catch(error){
        
@@ -252,7 +249,6 @@ export const putOrganization = (organization)=>async (dispatch)=>{
         const token = localStorage.getItem('authToken')
 
       const {code, name,photoUrl,status,latitud,longitud,createdBy,updatedBy} = organization;
-    //   setTimeout(async ()=>{
         const data = {
             code,
             name,
@@ -279,8 +275,7 @@ export const putOrganization = (organization)=>async (dispatch)=>{
           type: PUT_EDITAR_ORGANIZATION,
           payload: res.data
       }) 
-    //   console.log(getState().organization.loading)
-        // },2000)
+
       
     } catch (error) {
       
@@ -310,15 +305,13 @@ export const deleteOrganization = (code) => async(dispatch)=>{
             data:{code}
           };
             const res = await axios(config);
-       
-         
-            // setTimeout(()=>{ 
+
                
                 dispatch({
                     type: DELETE_ELIMINAR_ORGANIZATION,
                     payload: res.data
                 }) 
-            // },2000)
+       
 
     } catch (error) {
 

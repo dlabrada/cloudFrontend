@@ -61,14 +61,14 @@ export const getAuth= (data)=> async (dispatch)=>{
             dispatch({
                 type:LOADING
             });  
-            // setTimeout(async ()=>{
+           
                 console.log(`${BaseUrl}:9090/api/login`)
                 const res = await axios.post(`${BaseUrl}:9090/api/login`,data);
                 dispatch({
                     type: GET_OBTENER_TOKEN,
                     payload: res.data
                    }) 
-            // },2000)
+      
             localStorage.setItem('authToken',res.data.response.token)
             localStorage.setItem("usuario", JSON.stringify(res.data.user));
     }catch(error){

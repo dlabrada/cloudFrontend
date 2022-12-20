@@ -6,7 +6,7 @@ import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox,Alert } fr
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
-import AlertError from "../../../components/alerts/AlertsError"
+// import AlertError from "../../../components/alerts/AlertsError"
 
 // ----------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
+import { Link, Container, Typography, Divider, Stack, Button, Card } from '@mui/material';
 // hooks
 import useResponsive from '../../hooks/useResponsive';
 // components
@@ -21,7 +21,7 @@ const StyledRoot = styled('div')(({ theme }) => ({
 
 const StyledSection = styled('div')(({ theme }) => ({
   width: '100%',
-  maxWidth: 480,
+  maxWidth: 580,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -31,7 +31,7 @@ const StyledSection = styled('div')(({ theme }) => ({
 }));
 
 const StyledContent = styled('div')(({ theme }) => ({
-  maxWidth: 480,
+  maxWidth: 380,
   margin: 'auto',
   minHeight: '100vh',
   display: 'flex',
@@ -57,14 +57,14 @@ export default function LoginPage() {
             position: 'fixed',
             top: { xs: 16, sm: 24, md: 40 },
             left: { xs: 16, sm: 24, md: 40 },
+            
           }}
         />
-
         {mdUp && (
           <StyledSection sx={{backgroundImage:'url(/assets/font_login.jpg)', backgroundRepeat:'no-repeat', backgroundSize:'cover', backgroundPositionX:'center'}}>
-            <Typography variant="h3" sx={{ px: 5, mt: 1, mb: 5 }}>
+            {/* <Typography variant="h3" sx={{ px: 5, mt: 1, mb: 5 }}>
               Hi, Welcome Back
-            </Typography>
+            </Typography> */}
             {/* <img src="/assets/font_login.jpg" alt="login" /> */}
           </StyledSection>
         )}

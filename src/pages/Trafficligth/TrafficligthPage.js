@@ -14,10 +14,7 @@ import {
   Stack,
   Paper,
   Button,
-  Popover,
-  Checkbox,
   TableRow,
-  MenuItem,
   TableBody,
   TableCell,
   Container,
@@ -155,10 +152,10 @@ export default function TrafficligthPage() {
     top100Films =  list.map((org)=>{
       return  {label:org.code}
       })
-    navigate('./edit',{state:{Organization:raw,top100Films}})
+    navigate('../trafficligthedit',{state:{Organization:raw,top100Films}})
   }
   const handleNavigateDelete = (raw)=>{
-  navigate('./delete',{state:{Organization:raw}})
+  navigate('../trafficligthdelete',{state:{Organization:raw}})
   }
 
   return (

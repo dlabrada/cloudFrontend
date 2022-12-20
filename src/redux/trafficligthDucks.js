@@ -95,15 +95,10 @@ export const getTrafficligth= ()=> async (dispatch)=>{
                 }
               };
             const res = await axios(config);
-            
-
-             
-                // setTimeout(async ()=>{
                 dispatch({
                     type: GET_OBTENER_TRAFFICLIGTH,
                     payload: res.data
                    }) 
-            // },1000)
 
     }catch(error){
       
@@ -121,7 +116,6 @@ export const postTrafficligth = (trafficligth)=>async (dispatch)=>{
         dispatch({
             type:LOADING
         });
-    //   console.log(trafficligth)
       const {code,name,status,latitud,longitud,token,organization} = trafficligth;
         const data = {
             code,
@@ -135,9 +129,6 @@ export const postTrafficligth = (trafficligth)=>async (dispatch)=>{
             createdBy:"Dlabrada",
             updatedBy:"Juean"
       } ;
-
-
-        // setTimeout(async()=>{
 
         const tokenWeb = localStorage.getItem('authToken')
         
@@ -157,7 +148,6 @@ export const postTrafficligth = (trafficligth)=>async (dispatch)=>{
          payload: res.data,
         }) 
 
-        // },2000)
         
     } catch (error) {
         dispatch({
@@ -177,7 +167,7 @@ export const putTrafficligth = (trafficligth)=>async (dispatch)=>{
 
       const {code, name,organization,status,latitud,statusTraffic,longitud,token, createdBy,updatedBy} = trafficligth;
       // Se debe crear con data para que el backend lo reconzoa automaticamente
-    //   setTimeout(async ()=>{
+
         const data = {
             code, name,organization,status,latitud,statusTraffic,longitud,token, createdBy,updatedBy
       } ;
@@ -201,7 +191,6 @@ export const putTrafficligth = (trafficligth)=>async (dispatch)=>{
           type: PUT_EDITAR_TRAFFICLIGTH,
           payload: response.data
       }) 
-        // },2000)
       
     } catch (error) {
         dispatch({
@@ -233,13 +222,11 @@ export const deleteTrafficligth = (code) => async(dispatch)=>{
 
             const resDelete = await axios(config);
 
-    
-            // setTimeout(()=>{ 
                 dispatch({
                     type: DELETE_ELIMINAR_TRAFFICLIGTH,
                     payload: resDelete.data
                 }) 
-            // },2000)
+      
 
     } catch (error) {
         dispatch({
