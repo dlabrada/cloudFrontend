@@ -1,5 +1,5 @@
 {
-  "name": "Dashboard Tek Chile Cloud",
+  "name": "tekchile-cloud",
   "author": "dlabrada",
   "licence": "MIT",
   "version": "1.0.0",
@@ -97,5 +97,5 @@
   "overrides": {
     "@svgr/webpack": "^6.5.0"
   },
-  "homepage": "./"
+  "homepage": "."
 }

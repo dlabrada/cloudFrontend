@@ -15,6 +15,7 @@ import { LoginForm } from '../../sections/auth/login';
 const StyledRoot = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     display: 'flex',
+    backgroundImage:'/assets/font_login.jpg'
   },
 }));
 
@@ -25,7 +26,8 @@ const StyledSection = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   boxShadow: theme.customShadows.card,
-  backgroundColor: theme.palette.background.default,
+  // backgroundImage:'/assets/font_login.jpg',
+  // backgroundColor: theme.palette.background.default,
 }));
 
 const StyledContent = styled('div')(({ theme }) => ({
@@ -59,11 +61,11 @@ export default function LoginPage() {
         />
 
         {mdUp && (
-          <StyledSection>
-            <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
+          <StyledSection sx={{backgroundImage:'url(/assets/font_login.jpg)', backgroundRepeat:'no-repeat', backgroundSize:'cover', backgroundPositionX:'center'}}>
+            <Typography variant="h3" sx={{ px: 5, mt: 1, mb: 5 }}>
               Hi, Welcome Back
             </Typography>
-            <img src="/assets/illustrations/illustration_login.png" alt="login" />
+            {/* <img src="/assets/font_login.jpg" alt="login" /> */}
           </StyledSection>
         )}
 
