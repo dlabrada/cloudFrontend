@@ -219,7 +219,7 @@ export default function Maps() {
           
         </Stack>
           <Card sx={{height:"30rem"}}>
-          <MapContainer center={[-38.7407, -72.6056]} zoom={13} >
+          <MapContainer center={[user.latitud,user.longitud]} zoom={13} >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
