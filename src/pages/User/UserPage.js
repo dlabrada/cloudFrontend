@@ -97,6 +97,9 @@ export default function UserPage() {
   const [loading,setLoading]=useState(false);
   const [error,setError]=useState(null );
   const [success,setSuccess]=useState(false );
+
+  const user = JSON.parse(localStorage.getItem('usuario'))
+
   useEffect(()=>{
     dispatch(getUser());
     setLoading(load)
@@ -185,7 +188,7 @@ export default function UserPage() {
             </>
 
                ):(
-                success?(
+                (success)?(
                   <>       
                      <UserListToolbar filterName={filterName} select={select} onFilterName={handleFilterByName} /> 
                   <Scrollbar>
@@ -232,16 +235,27 @@ export default function UserPage() {
                               </TableCell>
                               <TableCell align="left" size='small'> 
                               {organization}
-                              </TableCell>
+                              </TableCell>                      
                               <TableCell align="left" size='small'>
-                                 <Button variant="contained" size='small' color="warning" onClick={()=>handleNavigateEdit(row)}>
-                                   <Iconify icon={'eva:edit-fill'} sx={{ mr: 1 }} />
-                                       Edit
-                                   </Button>
-                                   <Button onClick={()=>handleNavigateDelete(row)} variant="contained" size='small' color='error'sx={{ ml: 1 }}>
-                                     <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 1 }} />
-                                         Delete
-                                     </Button >
+                              {
+                                
+                                user.roles==="Operator" ?'No Avaible':(
+                                  <>
+                                    <Button variant="contained" size='small' color="warning" onClick={()=>handleNavigateEdit(row)}>
+                                      <Iconify icon={'eva:edit-fill'} sx={{ mr: 1 }} />
+                                          Edit
+                                      </Button>
+                                      {
+                                        user.roles==="SAdmin"&&(
+                                          <Button onClick={()=>handleNavigateDelete(row)} variant="contained" size='small' color='error'sx={{ ml: 1 }}>
+                                          <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 1 }} />
+                                              Delete
+                                          </Button >
+                                        )
+                                      }      
+                                  </>                              
+                                )
+                              }                      
                                  </TableCell>
                             </TableRow>
                           );

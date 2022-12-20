@@ -90,6 +90,8 @@ export default function TrafficligthPage() {
   const [loading,setLoading]=useState(false);
   const [error,setError]=useState(null );
   const [success,setSuccess]=useState(false );
+  const user = JSON.parse(localStorage.getItem('usuario'))
+
   useEffect(()=>{
     dispatch(getTrafficligth());
     setLoading(load)
@@ -231,16 +233,25 @@ export default function TrafficligthPage() {
                          <TableCell align="left" size='small'>
                            <Label  >{status==='Y'?'Habilitado':'Inhabilitado'}</Label>
                          </TableCell>
-           
-                             <TableCell align="left" size='small'>
-                             <Button variant="contained" size='small' color="warning" onClick={()=>handleNavigateEdit(row)}>
+                         <TableCell align="left" size='small'>
+                         {
+                           user.roles==="Operator" ?'No Avaible':(
+                           <>
+                            <Button variant="contained" size='small' color="warning" onClick={()=>handleNavigateEdit(row)}>
                                <Iconify icon={'eva:edit-fill'} sx={{ mr: 1 }} />
                                    Edit
-                               </Button>
-                               <Button onClick={()=>handleNavigateDelete(row)} variant="contained" size='small' color='error'sx={{ ml: 1 }}>
-                                 <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 1 }} />
-                                     Delete
-                                 </Button >
+                            </Button>
+                           {
+                            user.roles==="SAdmin"&&(
+                              <Button onClick={()=>handleNavigateDelete(row)} variant="contained" size='small' color='error'sx={{ ml: 1 }}>
+                              <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 1 }} />
+                                  Delete
+                               </Button >
+                            )
+                           }                        
+                           </>
+                                 )
+                          }
                              </TableCell>
                        </TableRow>
                      );

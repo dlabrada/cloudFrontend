@@ -50,6 +50,7 @@ export default function TrafficligthListToolbar({ numSelected, filterName, onFil
   const list = useSelector(store=>store.trafficligth.org)
 
   let top100Films=[]
+  const user = JSON.parse(localStorage.getItem('usuario'))
 
   const handleNavigateCreate = ()=>{
 
@@ -101,14 +102,19 @@ export default function TrafficligthListToolbar({ numSelected, filterName, onFil
 
       </>
       ) : ( */}
-               <Button variant="contained" 
+      {
+              user.roles==="Operator" ?'':(
+                <Button variant="contained" 
                 size='small' 
                 color='secondary'
                 startIcon={<Iconify icon="eva:plus-fill" />}  
                 onClick={handleNavigateCreate}
-         >
-           New
-        </Button>
+              >
+              New
+              </Button>
+              )
+       }
+       
       {/* )} */}
     </StyledRoot>
   );

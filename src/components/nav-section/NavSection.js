@@ -32,12 +32,9 @@ export default function NavSection({ data = [], user , ...other }) {
       <Box {...other}>
         <List disablePadding sx={{ p: 1 }}>
           {
-           
               data.map((item) => (
                 <NavItem key={item.title} item={item} />
               ))
-           
-      
           }
         </List>
       </Box>

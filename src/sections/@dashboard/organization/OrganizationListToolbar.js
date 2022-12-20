@@ -52,6 +52,7 @@ export default function OrganizationListToolbar({ numSelected, filterName, onFil
   }
 
 //  const { code } = useParams();
+const user = JSON.parse(localStorage.getItem('usuario'))
 
   const handleNavigateEdit = (code)=>{
 
@@ -119,6 +120,7 @@ const handleNavigateDelete = (code)=>{
       )}
       </>
       ) : (
+        user.roles==="Operator"?'':
         <Button variant="contained" 
                 size='small' 
                 color='secondary'

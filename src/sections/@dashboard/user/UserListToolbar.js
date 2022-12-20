@@ -49,6 +49,7 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName,
   const logo = useSelector(store=>store.user.logo)
   const roles = useSelector(store=>store.user.roles)
   let top100Films=[]
+  const user = JSON.parse(localStorage.getItem('usuario'))
 
   const handleNavigateCreate = ()=>{
 
@@ -96,18 +97,21 @@ console.log(top100Films)
         <DeleteModal  organization={select} id={"user"}/>
         </Stack>
       )}
-      
-
       </>
       ) : (
-        <Button variant="contained" 
-        size='small' 
-        color='secondary'
-        startIcon={<Iconify icon="eva:plus-fill" />}  
-        onClick={handleNavigateCreate}
- >
-   New
-</Button>
+        
+             user.roles==="Operator" ?'':(
+            <Button variant="contained" 
+            size='small' 
+            color='secondary'
+            startIcon={<Iconify icon="eva:plus-fill" />}  
+            onClick={handleNavigateCreate}
+     >
+       New
+    </Button>
+          )
+        
+       
       )}
     </StyledRoot>
   );

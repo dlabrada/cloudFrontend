@@ -95,6 +95,7 @@ export const getValidate= ()=> async (dispatch)=>{
                     }
                   };
                 const res = await axios(config);
+                console.log(res.data)
                 dispatch({
                     type:GET_OBTENER_VALIDATE,
                      payload:res.data
@@ -103,7 +104,7 @@ export const getValidate= ()=> async (dispatch)=>{
               
             // },2000)
     }catch(error){
-   
+   console.log(error)
         dispatch({
             type:ERROR1,
              payload:error.response.data
