@@ -13,7 +13,7 @@ const dataUsers ={
     error:""
 
 }
-const BaseUrl = "http://137.184.201.232"
+const BaseUrl = "https://tekchile-cloud.cl"
 const LOADING = "LOADING"
 const LOADING1 = "LOADING1"
 const ERROR = "ERROR"
@@ -97,7 +97,7 @@ export const getUser= ()=> async (dispatch)=>{
         
     const config = {
         method: 'get',
-        url: `${BaseUrl}:9090/api/users/sql`,
+        url: `${BaseUrl}/api/users/sql`,
         headers: { 
           'Content-Type': 'application/json',
            'auth-token': token
@@ -145,7 +145,7 @@ export const postUser = (userItems) => async (dispatch)=>{
         
       const config = {
           method: 'post',
-          url: `${BaseUrl}:9090/api/users/sql`,
+          url: `${BaseUrl}/api/users/sql`,
           headers: { 
             'Content-Type': 'application/json',
              'auth-token': token
@@ -177,7 +177,7 @@ export const deleteUser = (code) => async(dispatch)=>{
         const token = localStorage.getItem('authToken')
             const config = {
                 method: 'delete',
-                url: `${BaseUrl}:9090/api/users/sql`,
+                url: `${BaseUrl}/api/users/sql`,
                 headers: { 
                   'Content-Type': 'application/json',
                   'auth-token': token
@@ -211,7 +211,7 @@ export const putUser = (users) => async(dispatch)=>{
      const token = localStorage.getItem('authToken')
       const config = {
         method: 'put',
-        url: `${BaseUrl}:9090/api/users/sql`,
+        url: `${BaseUrl}/api/users/sql`,
         headers: { 
           'Content-Type': 'application/json',
           'auth-token': token

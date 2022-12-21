@@ -9,7 +9,7 @@ const dataTrafficligth ={
     success: false,
     error:""
 }
-const BaseUrl = "http://137.184.201.232"
+const BaseUrl = "https://tekchile-cloud.cl"
 const LOADING = "LOADING"
 const ERROR = "ERROR"
 const GET_OBTENER_TRAFFICLIGTH = 'GET_OBETENER_TRAFFICLIGTH'
@@ -88,7 +88,7 @@ export const getTrafficligth= ()=> async (dispatch)=>{
        
             const config = {
                 method: 'get',
-                url:`${BaseUrl}:9090/api/trafficligth/sql`,
+                url:`${BaseUrl}/api/trafficligth/sql`,
                 headers: { 
                   'Content-Type': 'application/json',
                    'auth-token': token
@@ -134,7 +134,7 @@ export const postTrafficligth = (trafficligth)=>async (dispatch)=>{
         
         const config = {
             method: 'post',
-            url:`${BaseUrl}:9090/api/trafficligth/sql`,
+            url:`${BaseUrl}/api/trafficligth/sql`,
             headers: { 
               'Content-Type': 'application/json',
                'auth-token': tokenWeb
@@ -176,7 +176,7 @@ export const putTrafficligth = (trafficligth)=>async (dispatch)=>{
         
       const config = {
           method: 'put',
-          url: `${BaseUrl}:9090/api/trafficligth/sql`,
+          url: `${BaseUrl}/api/trafficligth/sql`,
           headers: { 
             'Content-Type': 'application/json',
              'auth-token': tokenWeb
@@ -211,7 +211,7 @@ export const deleteTrafficligth = (code) => async(dispatch)=>{
         
       const config = {
                 method: 'delete',
-                url: `${BaseUrl}:9090/api/trafficligth/sql`,
+                url: `${BaseUrl}/api/trafficligth/sql`,
           headers: { 
             'Content-Type': 'application/json',
              'auth-token': token

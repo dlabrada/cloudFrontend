@@ -6,7 +6,7 @@ const dataLog ={
     loading:true,
     loadingmodal:true,
 }
-const BaseUrl = "http://137.184.201.232"
+const BaseUrl = "https://tekchile-cloud.cl"
 const LOADING = "LOADING"
 const LOADINGMODAL = "LOADINGMODAL"
 const ERROR = "ERROR"
@@ -63,7 +63,7 @@ export const getLogs= ()=> async (dispatch)=>{
                 
                 const config = {
                     method: 'get',
-                    url: `${BaseUrl}:9090/api/event/sql`,
+                    url: `${BaseUrl}/api/event/sql`,
                     headers: { 
                       'Content-Type': 'application/json',
                        'auth-token': token
@@ -100,7 +100,7 @@ export const getDetails = (codeTraffic)=>async (dispatch)=>{
       
       const config = {
           method: 'post',
-          url: `${BaseUrl}:9090/api/event/details/sql`,
+          url: `${BaseUrl}/api/event/details/sql`,
           headers: { 
             'Content-Type': 'application/json',
              'auth-token': token

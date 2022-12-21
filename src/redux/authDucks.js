@@ -63,7 +63,7 @@ export const getAuth= (data)=> async (dispatch)=>{
             });  
            
                 console.log(`${BaseUrl}/api/login`)
-                const res = await axios.post(`${BaseUrl}:9090/api/login`,data);
+                const res = await axios.post(`${BaseUrl}/api/login`,data);
                 dispatch({
                     type: GET_OBTENER_TOKEN,
                     payload: res.data

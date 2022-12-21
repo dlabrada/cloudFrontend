@@ -8,7 +8,7 @@ const dataOrganization ={
     success: false,
     error:""
 }
-const BaseUrl = "http://137.184.201.232"
+const BaseUrl = "https://tekchile-cloud.cl"
 const LOADING = "LOADING"
 const LOADING1 = "LOADING1"
 const ERROR = "ERROR"
@@ -104,7 +104,7 @@ export const getOrganization= ()=> async (dispatch)=>{
             
             const config = {
                 method: 'get',
-                url: `${BaseUrl}:9090/api/organization/sql`,
+                url: `${BaseUrl}/api/organization/sql`,
                 headers: { 
                   'Content-Type': 'application/json',
                    'auth-token': token
@@ -141,7 +141,7 @@ export const getOrganizationCreate= ()=> async (dispatch)=>{
            
             const config = {
                 method: 'get',
-                url:  `${BaseUrl}:9090/api/organization/create/sql`,
+                url:  `${BaseUrl}/api/organization/create/sql`,
                 headers: { 
                   'Content-Type': 'application/json',
                    'auth-token': token
@@ -182,7 +182,7 @@ export const postOrganization = (organization)=>async (dispatch)=>{
         
         const config = {
             method: 'post',
-            url: `${BaseUrl}:9090/api/organization/sql`,
+            url: `${BaseUrl}/api/organization/sql`,
             headers: { 
               'Content-Type': 'application/json',
                'auth-token': token
@@ -215,7 +215,7 @@ export const getCodeOrganization= (code)=> async (dispatch)=>{
            }) 
         const config = {
             method: 'post',
-            url: `${BaseUrl}:9090/api/organization/sql/find`,
+            url: `${BaseUrl}/api/organization/sql/find`,
             headers: { 
               'Content-Type': 'application/json'
             },
@@ -262,7 +262,7 @@ export const putOrganization = (organization)=>async (dispatch)=>{
       
       const config = {
         method: 'put',
-        url: `${BaseUrl}:9090/api/organization/sql`,
+        url: `${BaseUrl}/api/organization/sql`,
         headers: { 
           'Content-Type': 'application/json',
            'auth-token': token
@@ -297,7 +297,7 @@ export const deleteOrganization = (code) => async(dispatch)=>{
         
         const config = {
             method: 'delete',
-            url: `${BaseUrl}:9090/api/organization/sql`,
+            url: `${BaseUrl}/api/organization/sql`,
             headers: { 
               'Content-Type': 'application/json',
                'auth-token': token

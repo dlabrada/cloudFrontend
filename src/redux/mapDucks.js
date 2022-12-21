@@ -4,7 +4,7 @@ const dataMaps ={
     array:[],
     loadingmap:false,
 }
-const BaseUrl = "http://137.184.201.232"
+const BaseUrl = "https://tekchile-cloud.cl"
 const LOADING = "LOADING"
 const ERROR = "ERROR"
 const GET_OBTENER_MAP = 'GET_OBETENER_MAP'
@@ -43,7 +43,7 @@ export const getMap= ()=> async (dispatch)=>{
                 
                 const config = {
                     method: 'get',
-                    url: `${BaseUrl}:9090/api/trafficligth/maps/sql`,
+                    url: `${BaseUrl}/api/trafficligth/maps/sql`,
                     headers: { 
                       'Content-Type': 'application/json',
                        'auth-token': token
