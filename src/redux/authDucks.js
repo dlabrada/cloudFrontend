@@ -6,7 +6,7 @@ const dataMaps ={
     error:"",
     errorA:""
 }
-const BaseUrl = "http://137.184.201.232"
+const BaseUrl = "https://tekchile-cloud.cl"
 const LOADING = "LOADING"
 const ERROR1 = "ERROR1"
 const GET_OBTENER_TOKEN = 'GET_OBETENER_TOKEN'
@@ -62,7 +62,7 @@ export const getAuth= (data)=> async (dispatch)=>{
                 type:LOADING
             });  
            
-                console.log(`${BaseUrl}:9090/api/login`)
+                console.log(`${BaseUrl}/api/login`)
                 const res = await axios.post(`${BaseUrl}:9090/api/login`,data);
                 dispatch({
                     type: GET_OBTENER_TOKEN,
@@ -88,7 +88,7 @@ export const getValidate= ()=> async (dispatch)=>{
         
                 const config = {
                     method: 'post',                    
-                    url: `${BaseUrl}:9090/api/validate`,
+                    url: `${BaseUrl}/api/validate`,
                     headers: { 
                       'Content-Type': 'application/json',
                        'auth-token': token
