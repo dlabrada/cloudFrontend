@@ -95,7 +95,7 @@ export const getValidate= ()=> async (dispatch)=>{
                     }
                   };
                 const res = await axios(config);
-                console.log(res.data)
+                // console.log(res.data)
                 dispatch({
                     type:GET_OBTENER_VALIDATE,
                      payload:res.data

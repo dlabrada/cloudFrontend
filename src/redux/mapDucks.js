@@ -38,6 +38,7 @@ export default function mapReducer(state= dataMaps,action){
 // OBTENER INFORMACION
 export const getMap= ()=> async (dispatch)=>{
     try{
+
             // setTimeout(async ()=>{
                 const token = localStorage.getItem('authToken')
                 

@@ -160,7 +160,7 @@ export const postUser = (userItems) => async (dispatch)=>{
         payload: res.data
        }) 
     } catch (error) {
-        
+        console.log(error)
         dispatch({
             type:ERROR,
              payload:error.response.data

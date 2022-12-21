@@ -94,7 +94,7 @@ const AuthProviderAdmin = ({ children, user, ruta='/login' })=>{
             { path: 'dashboard', element: <DashboardAppPage /> },
             { path: 'logs', element: <LogsPage /> },
             { path: 'details', element: <DetailsPage/> },
-            { path: 'maps', element: <MapsPage /> },
+            { path: 'maps', element: <MapsPage/> },
             { path: 'profile', element: <ProfilePage /> },
             { path: '404', element: <Page404 /> },
             { path:'*', element: <Navigate to="404" replace /> },

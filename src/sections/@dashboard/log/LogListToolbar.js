@@ -50,6 +50,7 @@ export default function LogListToolbar({ numSelected, filterName, onFilterName,s
   const handleNavigate = ()=>{
     navigate(-1)
   }
+  const user = JSON.parse(localStorage.getItem('usuario'))
 
   return (
     <StyledRoot
@@ -86,6 +87,7 @@ export default function LogListToolbar({ numSelected, filterName, onFilterName,s
               </Stack>
 
       ) : (
+        user.roles==="User"?'':
         <Stack direction={"row"} justifyContent="end" alignItems="end" spacing={1} > 
         <Button  variant="contained" size='small' color="secondary" >
                           <Iconify icon={'material-symbols:cloud-download'} sx={{ mr: 0.5 }}  />

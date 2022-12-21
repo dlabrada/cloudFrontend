@@ -6,6 +6,7 @@ import {render} from 'react-dom';
 import { Container} from '@mui/system';
 import { Typography, Stack,Card, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useLocation } from 'react-router-dom';
 
 import {useDispatch,useSelector} from 'react-redux'
 import { MapContainer, TileLayer, useMap, Marker,Popup } from 'react-leaflet'
@@ -32,12 +33,15 @@ import Loading from '../../components/loading/Loading';
 
 
 
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  width: '100%',
+  maxWidth: 580,
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.palette.text.secondary,
+  color: 'white',
 
 }));
 
@@ -106,11 +110,12 @@ const yellowIcon = new L.Icon({
 });
 const TOKEN = 'pk.eyJ1IjoiZGxhYnJhZGE5MiIsImEiOiJja3V0NmRiaXkxamNnMm9wZ2pxNWpmdnQwIn0.UBQPlP-O4qqu5RYuWr0q5w'; // Set your mapbox token here
 
-export default function Maps() {
+const Maps= ()=> {
   // const [popupInfo, setPopupInfo] = useState(null);
 
   const dispatch = useDispatch()
-
+  
+  const hora = new Date()
   const TRAFFICLIGTHLIST = useSelector(store=>store.map.array.TotalTraffic)
   const TotalTrafficOnline = useSelector(store=>store.map.array.TotalTrafficOnline)
   const TotalTrafficOffline = useSelector(store=>store.map.array.TotalTrafficOffline)
@@ -120,19 +125,24 @@ export default function Maps() {
 
  const user = JSON.parse(localStorage.getItem('usuario'))
 
+//  let actualizar = false
+
   useEffect(()=>{
     dispatch(getMap());
    },[dispatch])
 
-   useEffect(()=>{
-    setTimeout(()=>{
+ 
+useEffect(()=>{
+
+      setTimeout(()=>{
         dispatch(getMap());
-        console.log("cada 10 seg")
+        console.log("cada 10 seg")  
+        // actualizar = false
     },10000)
 
+  // setActualizar(urlActual==='/maps')
    },[TRAFFICLIGTHLIST])
-
-
+ 
 
   const marker = 
   TRAFFICLIGTHLIST?.map((mark,index)=>{
@@ -181,37 +191,42 @@ export default function Maps() {
       <Container >
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
         <Stack direction={"column"} alignItems="center" justifyContent="space-between">
-          <Item>
+          <Item >
           <Typography variant="h4" gutterBottom>
             <img alt="country" src={user.photoUrl} style={{ width: 120 }} />
           </Typography>
           </Item>
           </Stack >
           <Stack direction={"column"} alignItems="center" justifyContent="space-between">
-          <Item>
-          {/* {hora} */}
+          <Item sx={{background:'#008B8B'}}>
+             Last Sync: 
+             <br/>
+              {hora.toLocaleDateString()}
+              <br/>
+              {hora.toLocaleTimeString()}
+             
           </Item> 
           </Stack >
           <Stack justifyContent="flex-start" alignContent={"start"} direction={"row"} spacing={1} >
           <Stack direction={"column"} alignItems="end" justifyContent="flex-end" spacing={0.5} >
-              <Item>
-              Total {TRAFFICLIGTHLIST?.length}
+              <Item sx={{background:'blue'}}>
+                Total {TRAFFICLIGTHLIST?.length}            
               </Item>
-              <Item>
+              <Item sx={{background:'#228B22'}}>
                 Online {TotalTrafficOnline?.length}
               </Item>
-              <Item>
+              <Item sx={{background:'#6495ED'}}>
                 Offline {TotalTrafficOffline?.length}
               </Item>
           </Stack>
           <Stack direction={"column"} alignItems="end" justifyContent="flex-end" spacing={0.5} >
-              <Item>
+              <Item sx={{background:'black'}}>
                 Empalme {TotalTrafficEmpalme?.length}
               </Item>
-              <Item>
+              <Item sx={{background:'red'}}>
               Control {TotalTrafficControl?.length}
               </Item>
-              <Item>
+              <Item sx={{background:'orange'}}>
               Luces {TotalTrafficLuces?.length}
               </Item>
           </Stack>
@@ -222,8 +237,9 @@ export default function Maps() {
           <MapContainer center={[user.latitud,user.longitud]} zoom={13} >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"  
               />
+              
               {
                 marker
               }
@@ -233,3 +249,4 @@ export default function Maps() {
     </>
   );
 }
+export default Maps

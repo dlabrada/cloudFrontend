@@ -87,20 +87,26 @@ export default function AccountPopover({user}) {
             {user.email}
           </Typography>
         </Box>
+{
+  user.roles !== 'User' ? <>
+  
+  <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
-
-        <Stack sx={{ p: 1 }}>
-          {MENU_OPTIONS.map((option) => (
-          
-            <MenuItem key={option.label}   
-             component={RouterLink}
-               to={option.path}
-               onClick={handleClose}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Stack>
+    <Stack sx={{ p: 1 }}>
+      {MENU_OPTIONS.map((option) => (
+      
+        <MenuItem key={option.label}   
+         component={RouterLink}
+           to={option.path}
+           onClick={handleClose}>
+          {option.label}
+        </MenuItem>
+      ))}
+    </Stack>
+  </>:<>
+  </>   
+}
+      
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
