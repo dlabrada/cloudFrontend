@@ -35,12 +35,12 @@ import Loading from '../../components/loading/Loading';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'uuid', label: 'UUID', alignRight: false }, // TODO cambiar en BD registro por organizacion
   { id: 'codeTraffic', label: 'CodeTraffic', alignRight: false },
   { id: 'name', label: 'Name', alignRight: false },
   { id: 'statusTraffic', label: 'StatusTrafficLigth', alignRight: false },
   { id: 'date', label: 'Date', alignRight: false },
   { id: 'time', label: 'Time', alignRight: false },
+  { id: 'periodo', label: 'Periodo', alignRight: false }, // TODO cambiar en BD registro por organizacion
 ];
 
 // ----------------------------------------------------------------------
@@ -163,18 +163,12 @@ export default function LogPage() {
                     />
                     <TableBody>
                     {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                     
                       const { code, name,codeTraffic, createdAt,statusTraffic } = row;
-                
+                   
 
                       return (
-                        <TableRow hover key={code} tabIndex={-1} role="checkbox"size='small'>
-             
-                          <TableCell component="th" scope="row" size='small' >
-                          {/* <img alt="country" src={photoUrl} style={{ width: 80}} /> */}
-                          <Typography variant="subtitle2" noWrap>
-                                {code}
-                              </Typography>
-                          </TableCell>
+                        <TableRow hover key={code} tabIndex={-1} role="checkbox"size='small'>             
                           <TableCell align="left" size='small'>
                           <Typography variant="subtitle2" noWrap>
                                 {codeTraffic}
@@ -187,11 +181,22 @@ export default function LogPage() {
                           </TableCell>
 
                           <TableCell align="left" size='small'> 
-                            <Label  >{(statusTraffic===10111)?'Sin Informacion':(
-                                      (statusTraffic===11011)?'Empalme':(
-                                          (statusTraffic===11101)?'Control':(
-                                            (statusTraffic===11110)?'Luces':'Operativo'
+                            <Label  
+                             sx={{width:'80%'}}
+                                 color=  {(statusTraffic===10111)?'primary':(
+                                  (statusTraffic===11011)?'default':(
+                                      (statusTraffic===11101)?'error':(
+                                        (statusTraffic===11110)?'warning':'success'
+                                      )))}
+                            >
+                       {(statusTraffic===10111)?'Ultimo Report Supero las 2Hrs':(
+                                      (statusTraffic===11011)?'Problemas de Empalme':(
+                                          (statusTraffic===11101)?'Problemas en el Controlador':(
+                                            (statusTraffic===11110)?'Sin Luces hacia Terreno':'Funcionando con Normalida'
                                           )))}
+                              
+                            
+                         
                             </Label>
                           </TableCell>
                           <TableCell align="left" size='small'>
@@ -205,6 +210,9 @@ export default function LogPage() {
                               {createdAt}
                            </Moment>
                             
+                          </TableCell>
+                          <TableCell>
+                            Proximamente ...
                           </TableCell>
                         </TableRow>
                       );

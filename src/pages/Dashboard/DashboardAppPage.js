@@ -11,7 +11,7 @@ import { Container, Typography } from '@mui/material';
 
 export default function DashboardAppPage() {
   // const theme = useTheme();
-
+ console.log(process.env.ENVIRONMENT_VARIABLE_NAME) 
   return (
     <>
       <Helmet>
@@ -21,6 +21,7 @@ export default function DashboardAppPage() {
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
           Hi, Welcome back...
+          {process.env.ENVIRONMENT_VARIABLE_NAME}
         </Typography>
         <Typography variant="h6" sx={{ mb: 5 }}>
 Tek Chile S.A. cuenta con gran experiencia en el desarrollo, comercialización y mantenimiento de equipos y sistemas avanzados para soluciones de tráfico.

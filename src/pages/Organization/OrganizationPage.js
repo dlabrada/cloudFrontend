@@ -207,7 +207,7 @@ export default function OrganizationPage() {
                               </TableCell>
                               <TableCell align="left" size='small'>
                               <Typography variant="subtitle2" noWrap>
-                                    {code}
+                                    {code.toUpperCase()}
                                   </Typography>
                               </TableCell>
                               <TableCell align="left" size='small'>
@@ -218,7 +218,7 @@ export default function OrganizationPage() {
                               <TableCell align="left" size='small'>{createdBy}</TableCell>
                               <TableCell align="left" size='small'> {updatedBy}</TableCell>
                               <TableCell align="left" size='small'>
-                                <Label  >{status==='Y'?'Habilitado':'Inhabilitado'}</Label>
+                                <Label sx={{width:'80%'}} color={status==='Y'?'primary':'default'} >{status==='Y'?'Habilitado':'Inhabilitado'}</Label>
                               </TableCell>
                               <TableCell align="left" size='small'>
                               {
@@ -226,14 +226,12 @@ export default function OrganizationPage() {
                                 user.roles==="Operator" ?'No Avaible':(
                                   <>
                                     <Button variant="contained" size='small' color="warning" onClick={()=>handleNavigateEdit(row)}>
-                                      <Iconify icon={'eva:edit-fill'} sx={{ mr: 1 }} />
-                                          Edit
+                                      <Iconify icon={'eva:edit-fill'}  />                                         
                                       </Button>
                                       {
                                         user.roles==="SAdmin"&&(
                                           <Button onClick={()=>handleNavigateDelete(row)} variant="contained" size='small' color='error'sx={{ ml: 1 }}>
-                                          <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 1 }} />
-                                              Delete
+                                          <Iconify icon={'eva:trash-2-outline'} />
                                           </Button >
                                         )
                                       }      

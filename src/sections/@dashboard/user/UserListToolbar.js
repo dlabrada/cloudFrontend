@@ -78,6 +78,7 @@ console.log(top100Films)
           value={filterName}
           onChange={onFilterName}
           placeholder="Search user..."
+          size='small'
           startAdornment={
             <InputAdornment position="start">
               <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />

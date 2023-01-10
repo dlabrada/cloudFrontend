@@ -25,7 +25,6 @@ import L from 'leaflet'
 import Moment from 'react-moment';
 import{getMap} from '../../redux/mapDucks'
 
-import USERLIST from '../../_mock/organization';
 // import ControlPanel from './maps/control-panel';
 // import Pin from './pin';
 

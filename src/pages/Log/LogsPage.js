@@ -195,14 +195,14 @@ export default function LogPage() {
                         user.roles!=="User" && <TableCell component="th" scope="row" size='small' > 
                                            
                         <Typography variant="subtitle2" noWrap>
-                              {organization}
+                              {organization.toUpperCase()}
                             </Typography>
                         </TableCell>
                       }          
                       
                       <TableCell align="left" size='small'>
                       <Typography variant="subtitle2" noWrap>
-                            {code}
+                            {code.toUpperCase()}
                           </Typography>
                       </TableCell>
                       <TableCell align="left" size='small'>
@@ -212,11 +212,20 @@ export default function LogPage() {
                       </TableCell>
 
                       <TableCell align="left" size='small'> 
-                        <Label  >{(statusTraffic===10111)?'Sin Informacion':(
-                                      (statusTraffic===11011)?'Problemas de Empalme':(
-                                          (statusTraffic===11101)?'Problemas de Control':(
-                                            (statusTraffic===11110)?'Sin Luces hacia Terreno':'Funcionando con Normalida'
+                        <Label   sx={{width:'60%'}}
+                                    color=  {(statusTraffic===10111)?'primary':(
+                                      (statusTraffic===11011)?'default':(
+                                          (statusTraffic===11101)?'error':(
+                                            (statusTraffic===11110)?'warning':'success'
                                           )))}
+
+                        >
+                   {(statusTraffic===10111)?'Sin Info...':(
+                                      (statusTraffic===11011)?'Empalme':(
+                                          (statusTraffic===11101)?'Control':(
+                                            (statusTraffic===11110)?'Luces':'Operativo'
+                                          )))}
+
                         </Label>
                       </TableCell>
                       <TableCell align="left" size='small'>
